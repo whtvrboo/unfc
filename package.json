@@ -1,0 +1,48 @@
+{
+	"name": "unfc",
+	"version": "1.0.2",
+	"description": "A framework-agnostic NFC package for reading/writing NFC tags in web apps and PWAs",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"prepare": "npm run build",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"nfc",
+		"ndef",
+		"rfid",
+		"web nfc",
+		"pwa",
+		"mobile"
+	],
+	"author": "",
+	"license": "MIT",
+	"type": "module",
+	"devDependencies": {
+		"typescript": "^4.9.5"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/whtvrboo/unfc.git"
+	},
+	"engines": {
+		"node": ">=12.0.0"
+	},
+	"browserslist": [
+		"chrome >= 89"
+	],
+	"files": [
+		"dist/",
+		"dist/index.js",
+		"dist/definitions.js",
+		"dist/web.js",
+		"dist/nfc.js",
+		"dist/simple-nfc.js.js",
+		"dist/utils.js.js",
+		"dist/definitions.js",
+		"dist/ios-bridge.js",
+		"dist/ios-detection.js"
+	]
+}
