@@ -10,8 +10,10 @@ import {
 	NfcErrorType,
 } from "./definitions.js";
 import { WebNfc } from "./web.js";
-import { IosBridgeNfc } from './ios-bridge.js';
-import { IosDetection } from './ios-detection.js';
+import { IosBridgeNfc } from "./ios-bridge.js";
+import { AndroidBridgeNfc } from "./android-bridge.js";
+import { IosDetection } from "./ios-detection.js";
+import { AndroidDetection } from "./android-detection.js";
 
 /**
  * Main NFC class that provides access to NFC functionality.
@@ -21,22 +23,31 @@ export class Nfc {
 	private implementation: NfcPlugin;
 	private listeners: Map<string, Set<Function>> = new Map();
 	private iosInfo: any;
-
+	private androidInfo: any;
 
 	constructor() {
 		this.iosInfo = IosDetection.getIosSupportInfo();
+		this.androidInfo = AndroidDetection.getAndroidSupportInfo();
 
-		if (this.iosInfo.isIos && typeof (window as any).nativeNfcBridge !== 'undefined') {
-			console.log('Using iOS Native Bridge for NFC');
+		// Choose the appropriate implementation based on platform detection
+		if (
+			this.iosInfo.isIos &&
+			typeof (window as any).nativeNfcBridge !== "undefined"
+		) {
+			console.log("Using iOS Native Bridge for NFC");
 			this.implementation = new IosBridgeNfc();
+		} else if (this.androidInfo.isAndroid && this.androidInfo.useNativeBridge) {
+			console.log("Using Android Native Bridge for NFC");
+			this.implementation = new AndroidBridgeNfc();
 		} else {
+			// Fall back to Web NFC for supported browsers
+			console.log("Using Web NFC implementation");
 			this.implementation = new WebNfc();
 		}
 
 		// Set up status monitoring to track NFC availability
 		this.monitorNfcStatus();
 	}
-
 
 	/**
 	 * Internal method to monitor NFC status changes

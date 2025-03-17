@@ -1,6 +1,6 @@
 {
 	"name": "unfc",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A framework-agnostic NFC package for reading/writing NFC tags in web apps and PWAs",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -43,6 +43,8 @@
 		"dist/utils.js.js",
 		"dist/definitions.js",
 		"dist/ios-bridge.js",
-		"dist/ios-detection.js"
+		"dist/ios-detection.js",
+		"dist/android-detection.js",
+		"dist/android-bridge.js"
 	]
 }

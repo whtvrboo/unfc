@@ -1,4 +1,3 @@
-// src/utils.ts
 import { NdefRecord, NdefMessage, NfcTnf, NfcRtd } from "./definitions.js";
 
 export class NfcUtils {
